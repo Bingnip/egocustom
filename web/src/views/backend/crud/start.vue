@@ -1,6 +1,6 @@
 <template>
     <div class="default-main">
-        <div class="crud-title">{{ t('crud.crud.start') }}</div>
+        <div class="crud-title">{{ t('crud.crud.start') }}wafawf</div>
         <div class="start-opt">
             <el-row :gutter="20">
                 <el-col :xs="24" :span="8">

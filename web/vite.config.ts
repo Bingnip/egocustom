@@ -36,7 +36,7 @@ const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
         base: VITE_BASE_PATH,
         server: {
             port: parseInt(VITE_PORT),
-            open: VITE_OPEN != 'false',
+            open: false,
             proxy: proxy,
         },
         build: {

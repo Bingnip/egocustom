@@ -1,13 +1,13 @@
 import createAxios from '/@/utils/axios'
 
-export const url = '/admin/Gallery/'
+export const url = '/admin/routine.Gallery/'
 export const galleryUrl = '/admin/routine.Attachment/'
 export const actionUrl = new Map([['del', galleryUrl + 'del']])
 
 export function getGalleryList(params: anyObj = {}) {
     return createAxios({
         url: url + 'getGalleryAll',
-        method: 'get',
+        method: 'post',
         params: params,
     })
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\admin\controller\routine;
 
 use app\admin\model\Attachment as AttachmentModel;
 use app\common\controller\Backend;
-use think\facade\Log;
 
 class Gallery extends Backend
 {
@@ -17,7 +16,7 @@ class Gallery extends Backend
     protected array $withJoinTable = [];
 
     // 排除字段
-    protected array $preExcludeFields = [];
+    protected string|array $preExcludeFields = [];
 
     public function initialize(): void
     {

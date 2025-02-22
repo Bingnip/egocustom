@@ -17,7 +17,7 @@
         "axios": "1.7.2",
         "countup.js": "2.8.0",
         "echarts": "5.5.0",
-        "element-plus": "2.7.4",
+        "element-plus": "^2.7.4",
         "esno": "4.7.0",
         "font-awesome": "4.7.0",
         "lodash-es": "4.17.21",

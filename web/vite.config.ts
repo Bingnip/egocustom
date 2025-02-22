@@ -9,7 +9,7 @@ const pathResolve = (dir: string): any => {
     return resolve(__dirname, '.', dir)
 }
 
-// https://vitejs.cn/config/
+// https://vitejs.cn/c onfig/
 const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
     const { VITE_PORT, VITE_OPEN, VITE_BASE_PATH, VITE_OUT_DIR, VITE_PROXY_URL } = loadEnv(mode, process.cwd())
 

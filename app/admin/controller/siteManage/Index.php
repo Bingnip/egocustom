@@ -3,6 +3,8 @@ declare (strict_types=1);
 
 namespace app\admin\controller\siteManage;
 
+use think\Facade;
+use think\facade\Log;
 use Throwable;
 use app\common\controller\Backend;
 use app\admin\model\SiteManage as SiteManage;
@@ -17,7 +19,54 @@ class Index extends Backend
         $this->model = new SiteManage();
     }
 
-    public function getList(): void
+    public function saveConfig(): bool|object
+    {
+        if (!$this->request->isPost()) return false;
+        $post = $this->request->post();
+        $type = intval($post['type']);
+        $form = commonValidate($post['form']);
+        $update = [];
+
+        switch ($type) {
+            case 10:
+                $data = $form['system'];
+                foreach ($data as $k => $v) {
+                    $update[$v['sc_key']] = $v['sc_value'];
+                }
+                break;
+            case 20:
+                $data = $form['log'];
+                foreach ($data as $k => $v) {
+                    $update[$v['sc_key']] = $v['sc_value'];
+                }
+                break;
+            case 30:
+                $data = $form['mail'];
+                foreach ($data as $k => $v) {
+                    $update[$v['sc_key']] = $v['sc_value'];
+                }
+                break;
+            case 40:
+                $data = $form['thirdParty'];
+                foreach ($data as $k => $v) {
+                    $update[$v['sc_key']] = $v['sc_value'];
+                }
+                break;
+            case 50:
+                $data = $form['other'];
+                foreach ($data as $k => $v) {
+                    $update[$v['sc_key']] = $v['sc_value'];
+                }
+                break;
+        }
+
+        $res = $this->model->saveSysConfig($update);
+        logger($res);
+
+        $this->success('保存成功');
+    }
+
+    public function getList(): array
     {
         $list = $this->model->getSysConfig();
         $newList = [];

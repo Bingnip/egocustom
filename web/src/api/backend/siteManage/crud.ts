@@ -8,3 +8,11 @@ export function getList() {
         method: 'post',
     })
 }
+
+export function saveConfig(type: number, form: anyObj = {}) {
+    return createAxios({
+        url: url + 'saveConfig',
+        method: 'post',
+        data: { type, form },
+    })
+}

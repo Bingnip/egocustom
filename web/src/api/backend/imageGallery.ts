@@ -12,7 +12,7 @@ export function getGalleryList(params: anyObj = {}) {
     })
 }
 
-export function renameImgSubmit(params) {
+export function renameImgSubmit(params: anyObj = {}) {
     return createAxios({
         url: url + 'renameImgSubmit',
         method: 'post',

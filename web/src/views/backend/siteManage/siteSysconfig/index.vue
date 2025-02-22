@@ -4,7 +4,7 @@
             <el-tabs :tab-position="tabPosition" class="demo-tabs site-form">
                 <el-tab-pane label="系统参数">
                     <el-form-item v-for="(item, idx) in siteForm.system" :key="idx" :label="item.sc_title">
-                        <el-input v-model="item.sc_value" />
+                        <el-input v-model="item.sc_value" :readonly="item.sc_readonly" />
                         <span v-if="item.sc_desc != ''" class="site-form-memo">{{ item.sc_desc }}</span>
                     </el-form-item>
                     <el-form-item label=" ">
@@ -13,7 +13,7 @@
                 </el-tab-pane>
                 <el-tab-pane label="LOGO">
                     <el-form-item v-for="(item, idx) in siteForm.logo" :key="idx" :label="item.sc_title">
-                        <el-input v-model="item.sc_value" />
+                        <el-input v-model="item.sc_value" :readonly="item.sc_readonly" />
                         <span v-if="item.sc_desc != ''" class="site-form-memo">{{ item.sc_desc }}</span>
                     </el-form-item>
                     <el-form-item label=" ">
@@ -22,7 +22,7 @@
                 </el-tab-pane>
                 <el-tab-pane label="邮件">
                     <el-form-item v-for="(item, idx) in siteForm.mail" :key="idx" :label="item.sc_title">
-                        <el-input v-model="item.sc_value" />
+                        <el-input v-model="item.sc_value" :readonly="item.sc_readonly" />
                         <span v-if="item.sc_desc != ''" class="site-form-memo">{{ item.sc_desc }}</span>
                     </el-form-item>
                     <el-form-item label=" ">
@@ -31,7 +31,7 @@
                 </el-tab-pane>
                 <el-tab-pane label="第三方">
                     <el-form-item v-for="(item, idx) in siteForm.thirdParty" :key="idx" :label="item.sc_title">
-                        <el-input v-model="item.sc_value" />
+                        <el-input v-model="item.sc_value" :readonly="item.sc_readonly" />
                         <span v-if="item.sc_desc != ''" class="site-form-memo">{{ item.sc_desc }}</span>
                     </el-form-item>
                     <el-form-item label=" ">
@@ -40,7 +40,7 @@
                 </el-tab-pane>
                 <el-tab-pane label="其他">
                     <el-form-item v-for="(item, idx) in siteForm.other" :key="idx" :label="item.sc_title">
-                        <el-input v-model="item.sc_value" />
+                        <el-input v-model="item.sc_value" :readonly="item.sc_readonly" :disabled="item.sc_readonly == '1' ? 'disabled' : ''" />
                         <span v-if="item.sc_desc != ''" class="site-form-memo">{{ item.sc_desc }}</span>
                     </el-form-item>
                     <el-form-item label=" ">
@@ -56,6 +56,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { getList, saveConfig } from '/@/api/backend/siteManage/crud'
 import type { TabsPaneContext } from 'element-plus'
+import { ElMessage } from 'element-plus'
 
 const activeName = ref('first')
 
@@ -65,7 +66,13 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 
 const submit = (type: number) => {
     saveConfig(type, siteForm).then((res) => {
-        console.log(res)
+        if (res.code == 1) {
+            ElMessage({
+                message: res.msg,
+                type: 'success',
+                duration: 800,
+            })
+        }
     })
 }
 

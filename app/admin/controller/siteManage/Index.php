@@ -30,38 +30,24 @@ class Index extends Backend
         switch ($type) {
             case 10:
                 $data = $form['system'];
-                foreach ($data as $k => $v) {
-                    $update[$v['sc_key']] = $v['sc_value'];
-                }
                 break;
             case 20:
                 $data = $form['log'];
-                foreach ($data as $k => $v) {
-                    $update[$v['sc_key']] = $v['sc_value'];
-                }
                 break;
             case 30:
                 $data = $form['mail'];
-                foreach ($data as $k => $v) {
-                    $update[$v['sc_key']] = $v['sc_value'];
-                }
                 break;
             case 40:
                 $data = $form['thirdParty'];
-                foreach ($data as $k => $v) {
-                    $update[$v['sc_key']] = $v['sc_value'];
-                }
                 break;
             case 50:
                 $data = $form['other'];
-                foreach ($data as $k => $v) {
-                    $update[$v['sc_key']] = $v['sc_value'];
-                }
                 break;
         }
 
-        $res = $this->model->saveSysConfig($update);
-        logger($res);
+        foreach ($data as $k => $v) {
+            $this->model->saveSysConfig($v['sc_key'], $v['sc_value']);
+        }
 
         $this->success('保存成功');
     }

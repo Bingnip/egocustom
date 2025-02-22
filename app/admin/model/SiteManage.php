@@ -21,9 +21,9 @@ class SiteManage extends Model
         return Db::name($this->tableName)->order(['sc_id' => 'asc','sc_order' => 'desc'])->select()->toArray();
     }
 
-    public function saveSysConfig($update): bool
+    public function saveSysConfig($key, $value): bool
     {
-        return Db::name($this->tableName)
-            ->update([]);
+        return Db::name($this->tableName)->where('sc_key', $key)
+            ->update(['sc_value' => $value]);
     }
 }

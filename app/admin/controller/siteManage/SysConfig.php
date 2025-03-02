@@ -9,7 +9,7 @@ use Throwable;
 use app\common\controller\Backend;
 use app\admin\model\SiteManage as SiteManage;
 
-class Index extends Backend
+class SysConfig extends Backend
 {
     protected object $model;
 

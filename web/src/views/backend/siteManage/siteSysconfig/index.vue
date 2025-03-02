@@ -32,7 +32,7 @@
                 <el-tab-pane label="第三方">
                     <el-form-item v-for="(item, idx) in siteForm.thirdParty" :key="idx" :label="item.sc_title">
                         <el-input v-model="item.sc_value" :readonly="item.sc_readonly" />
-                        <span v-if="item.sc_desc != ''" class="site-form-memo">{{ item.sc_desc }}</span>
+                        <span v-if="(item.sc_desc! = '')" class="site-form-memo">{{ item.sc_desc }}</span>
                     </el-form-item>
                     <el-form-item label=" ">
                         <el-button type="primary" size="small" @click="submit(40)">提交</el-button>
@@ -54,7 +54,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
-import { getList, saveConfig } from '/@/api/backend/siteManage/crud'
+import { getList, saveConfig } from '../../../../api/backend/siteManage/sysConfig'
 import type { TabsPaneContext } from 'element-plus'
 import { ElMessage } from 'element-plus'
 

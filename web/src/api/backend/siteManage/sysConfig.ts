@@ -1,6 +1,6 @@
 import createAxios from '/@/utils/axios'
 
-export const url = '/admin/siteManage.Index/'
+export const url = '/admin/siteManage.SysConfig/'
 
 export function getList() {
     return createAxios({

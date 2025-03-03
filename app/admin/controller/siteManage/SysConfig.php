@@ -3,11 +3,8 @@ declare (strict_types=1);
 
 namespace app\admin\controller\siteManage;
 
-use think\Facade;
-use think\facade\Log;
-use Throwable;
+use app\admin\model\siteManage as SiteManage;
 use app\common\controller\Backend;
-use app\admin\model\SiteManage as SiteManage;
 
 class SysConfig extends Backend
 {
@@ -16,7 +13,7 @@ class SysConfig extends Backend
     public function initialize(): void
     {
         parent::initialize();
-        $this->model = new SiteManage();
+        $this->model = new SiteManage\SysConfig();
     }
 
     public function saveConfig(): bool|object

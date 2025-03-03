@@ -1,15 +1,14 @@
 <?php
 
-namespace app\admin\model;
+namespace app\admin\model\siteManage;
 
 use think\facade\Db;
 use think\Model;
-use think\model\relation\BelongsTo;
 
 /**
  * SiteManage 模型
  */
-class SiteManage extends Model
+class SysConfig extends Model
 {
     protected $tableName = 'sys_config';
 
@@ -26,4 +25,5 @@ class SiteManage extends Model
         return Db::name($this->tableName)->where('sc_key', $key)
             ->update(['sc_value' => $value]);
     }
+
 }

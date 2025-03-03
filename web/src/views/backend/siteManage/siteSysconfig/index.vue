@@ -54,7 +54,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
-import { getList, saveConfig } from '../../../../api/backend/siteManage/sysConfig'
+import { getList, saveConfig } from '/@/api/backend/siteManage/sysConfig'
 import type { TabsPaneContext } from 'element-plus'
 import { ElMessage } from 'element-plus'
 

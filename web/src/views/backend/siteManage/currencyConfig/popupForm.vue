@@ -38,18 +38,18 @@
                         :placeholder="t('Please input field', { field: t('Code') })"
                     />
                     <FormItem
-                        :label="t('currencyConfig.crc_sign')"
+                        :label="t('siteManage.currencyConfig.crc_sign')"
                         type="string"
                         v-model="baTable.form.items!.crc_sign"
                         prop="crc_sign"
                         :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_sign') })"
                     />
                     <FormItem
-                        :label="t('货币名称')"
+                        :label="t('siteManage.currencyConfig.crc_name')"
                         type="string"
                         v-model="baTable.form.items!.crc_name"
                         prop="crc_name"
-                        :placeholder="t('Please input field', { field: t('currency.crc_name') })"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_name') })"
                     />
                     <FormItem
                         :label="t('汇率（与美元）')"

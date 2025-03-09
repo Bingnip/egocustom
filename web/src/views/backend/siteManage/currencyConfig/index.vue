@@ -60,7 +60,7 @@ const baTable = new baTableClass(
             { label: t('兑换加收比率'), prop: 'crc_exchange_rate', align: 'center', width: 130, operator: false },
             { render: 'slot', slotName: 'other', width: 70, operator: false },
             {
-                label: t('State'),
+                label: t('Status'),
                 prop: 'crc_status',
                 align: 'center',
                 render: 'tag',

@@ -146,8 +146,6 @@ const rules: Partial<Record<string, FormItemRule[]>> = reactive({
     crc_exchange_rate: [buildValidatorData({ name: 'number', title: t('currency.crc_exchange_rate') })],
     crc_default: [buildValidatorData({ name: 'number', title: t('currency.crc_default') })],
     crc_order: [buildValidatorData({ name: 'number', title: t('currency.crc_order') })],
-    crc_created_at: [buildValidatorData({ name: 'number', title: t('currency.crc_created_at') })],
-    crc_updated_at: [buildValidatorData({ name: 'number', title: t('currency.crc_updated_at') })],
 })
 
 const onIconChange = (uploadFile: UploadFile) => {

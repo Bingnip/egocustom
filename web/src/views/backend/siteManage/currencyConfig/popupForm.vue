@@ -31,96 +31,86 @@
                     :rules="rules"
                 >
                     <FormItem
-                        :label="t('Code')"
+                        :label="t('siteManage.currencyConfig.crc_code')"
                         type="string"
                         v-model="baTable.form.items!.crc_code"
                         prop="crc_code"
-                        :placeholder="t('Please input field', { field: t('Code') })"
-                    />
-                    <FormItem
-                        :label="t('siteManage.currencyConfig.crc_sign')"
-                        type="string"
-                        v-model="baTable.form.items!.crc_sign"
-                        prop="crc_sign"
-                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_sign') })"
+                        block-help="货币Code，例如：USD"
+                        :input-attr="{ maxlength: 3 }"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_code') })"
                     />
                     <FormItem
                         :label="t('siteManage.currencyConfig.crc_name')"
                         type="string"
                         v-model="baTable.form.items!.crc_name"
                         prop="crc_name"
+                        block-help="例如：US Dollar"
                         :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_name') })"
                     />
                     <FormItem
-                        :label="t('汇率（与美元）')"
-                        type="number"
-                        prop="crc_rate"
-                        :input-attr="{ step: 1 }"
-                        v-model.number="baTable.form.items!.crc_rate"
-                        :placeholder="t('Please input field', { field: t('currency.crc_rate') })"
+                        :label="t('siteManage.currencyConfig.crc_sign')"
+                        type="string"
+                        v-model="baTable.form.items!.crc_sign"
+                        prop="crc_sign"
+                        block-help="例如：$"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_sign') })"
                     />
                     <FormItem
-                        :label="t('兑换加收比率')"
-                        type="number"
-                        prop="crc_exchange_rate"
-                        :input-attr="{ step: 1 }"
-                        v-model.number="baTable.form.items!.crc_exchange_rate"
-                        :placeholder="t('Please input field', { field: t('currency.crc_exchange_rate') })"
-                    />
-                    <FormItem
-                        :label="t('图标')"
-                        type="icon"
+                        :label="t('siteManage.currencyConfig.crc_icon')"
+                        type="image"
                         v-model="baTable.form.items!.crc_icon"
                         prop="crc_icon"
-                        :input-attr="{ placement: 'top' }"
-                        :placeholder="t('Please select field', { field: t('currency.crc_icon') })"
+                        :input-attr="{ hideSelectFile: true, onChange: onIconChange, onSuccess: onSuccess }"
+                        :placeholder="t('Please select field', { field: t('siteManage.currencyConfig.crc_icon') })"
                     />
                     <FormItem
-                        :label="t('默认')"
+                        :label="t('siteManage.currencyConfig.crc_rate')"
                         type="number"
-                        prop="crc_default"
-                        :input-attr="{ step: 1 }"
-                        v-model.number="baTable.form.items!.crc_default"
-                        :placeholder="t('Please input field', { field: t('currency.crc_default') })"
+                        prop="crc_rate"
+                        v-model.number="baTable.form.items!.crc_rate"
+                        block-help="（100美元可兑换多少此种货币"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_name') })"
                     />
                     <FormItem
-                        :label="t('currency.crc_status')"
+                        :label="t('siteManage.currencyConfig.crc_exchange_rate')"
+                        type="number"
+                        prop="crc_exchange_rate"
+                        v-model.number="baTable.form.items!.crc_exchange_rate"
+                        block-help="（货币兑换需要加收的，汇率会再除以这个得到真正的汇率，请填写小于等于1的数值)"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_exchange_rate') })"
+                    />
+                    <FormItem
+                        :label="t('siteManage.currencyConfig.crc_default')"
+                        type="checkbox"
+                        prop="crc_default"
+                        v-model.number="baTable.form.items!.crc_default"
+                        block-help="(是否为默认的货币)"
+                        :data="{ content: { '1': '是' } }"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_default') })"
+                    />
+                    <FormItem
+                        :label="t('State')"
                         type="radio"
                         v-model="baTable.form.items!.crc_status"
                         prop="crc_status"
-                        :input-attr="{ content: {} }"
-                        :placeholder="t('Please select field', { field: t('currency.crc_status') })"
+                        :data="{ childrenAttr: { border: true }, content: { '0': '禁用', '1': '启用' } }"
+                        :placeholder="t('Please select field', { field: t('State') })"
                     />
                     <FormItem
-                        :label="t('currency.crc_order')"
+                        :label="t('siteManage.currencyConfig.crc_order')"
                         type="number"
                         prop="crc_order"
                         :input-attr="{ step: 1 }"
                         v-model.number="baTable.form.items!.crc_order"
-                        :placeholder="t('Please input field', { field: t('currency.crc_order') })"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_order') })"
                     />
                     <FormItem
-                        :label="t('currency.crc_created_at')"
-                        type="number"
-                        prop="crc_created_at"
-                        :input-attr="{ step: 1 }"
-                        v-model.number="baTable.form.items!.crc_created_at"
-                        :placeholder="t('Please input field', { field: t('currency.crc_created_at') })"
-                    />
-                    <FormItem
-                        :label="t('currency.crc_updated_at')"
-                        type="number"
-                        prop="crc_updated_at"
-                        :input-attr="{ step: 1 }"
-                        v-model.number="baTable.form.items!.crc_updated_at"
-                        :placeholder="t('Please input field', { field: t('currency.crc_updated_at') })"
-                    />
-                    <FormItem
-                        :label="t('currency.crc_memo')"
-                        type="string"
+                        :label="t('siteManage.currencyConfig.crc_memo')"
+                        type="textarea"
                         v-model="baTable.form.items!.crc_memo"
                         prop="crc_memo"
-                        :placeholder="t('Please input field', { field: t('currency.crc_memo') })"
+                        :placeholder="t('Please input field', { field: t('siteManage.currencyConfig.crc_memo') })"
+                        :input-attr="{ rows: 3 }"
                     />
                 </el-form>
             </div>
@@ -159,6 +149,14 @@ const rules: Partial<Record<string, FormItemRule[]>> = reactive({
     crc_created_at: [buildValidatorData({ name: 'number', title: t('currency.crc_created_at') })],
     crc_updated_at: [buildValidatorData({ name: 'number', title: t('currency.crc_updated_at') })],
 })
+
+const onIconChange = (uploadFile: UploadFile) => {
+    console.log(uploadFile)
+}
+
+const onIconSuccess = (res: ApiPromise, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
+    console.log(res)
+}
 </script>
 
 <style scoped lang="scss"></style>

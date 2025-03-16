@@ -4,7 +4,7 @@
 
         <!-- 表格顶部菜单 -->
         <!-- 自定义按钮请使用插槽，甚至公共搜索也可以使用具名插槽渲染，参见文档 -->
-        <TableHeader :buttons="['refresh', 'add', 'edit', 'delete', 'comSearch', 'columnDisplay']"></TableHeader>
+        <TableHeader :buttons="['refresh', 'add', 'delete', 'comSearch', 'columnDisplay']"></TableHeader>
 
         <!-- 表格 -->
         <!-- 表格列有多种自定义渲染方式，比如自定义组件、具名插槽等，参见文档 -->
@@ -118,6 +118,10 @@ onMounted(() => {
         baTable.initSort()
         baTable.dragSort()
     })
+})
+
+baTable.requestEdit()?.then((res) => {
+    console.log(res)
 })
 </script>
 

@@ -67,8 +67,23 @@ class CurrencyConfig extends Backend
 
     public function edit(): void
     {
-        $id  = $this->request->param($this->model->getPk());
-        logger(12414124214124141414);
-        $row = $this->model->find($id);
+        if ($this->request->isPost()) {
+            $this->success('保存成功');
+
+        } else {
+            $id   = $this->request->param('crc_id');
+            $info = $this->model->getRowById($id);
+            $this->success('', [
+                'info' => $info
+            ]);
+        }
+    }
+
+    public function del(array $ids = []): void
+    {
+        if (!$this->request->isDelete() || !$ids) $this->error(__('Parameter error'));
+
+        $result = $this->model->remove($ids);
+        $this->success('删除成功');
     }
 }

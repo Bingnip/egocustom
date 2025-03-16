@@ -48,4 +48,10 @@ class CurrencyConfig extends Model
 
         return (bool)$row;
     }
+
+    public function remove(array $ids = []): bool
+    {
+        $result = Db::name($this->tableName)->where('crc_id', 'in', $ids)->delete();
+        return $result != false;
+    }
 }

@@ -6,6 +6,10 @@ namespace app\admin\controller\siteManage;
 use app\admin\model\siteManage as SiteManage;
 use app\common\controller\Backend;
 
+/**
+ * 系统
+ */
+
 class SysConfig extends Backend
 {
     protected object $model;

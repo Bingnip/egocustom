@@ -46,34 +46,44 @@ const baTable = new baTableClass(
         pk: '编号',
         column: [
             { type: 'selection', align: 'center', operator: false },
-            { label: t(''), prop: 'cb_id', align: 'center', width: 70, operator: false, sortable: 'custom' },
+            { label: t('cmsManage.block.cb_id'), prop: 'cb_id', align: 'center', width: 70, operator: false },
             {
-                label: t('cms.block.cb_name'),
-                prop: '名称',
+                label: t('cmsManage.block.cb_name'),
+                prop: 'cb_name',
                 align: 'center',
-                operatorPlaceholder: t('Fuzzy query'),
                 operator: 'LIKE',
                 sortable: false,
             },
             {
-                label: t('cms.block.标识符'),
-                prop: '标识符',
+                label: t('cmsManage.block.cb_key'),
+                prop: 'cb_key',
                 align: 'center',
-                operatorPlaceholder: t('Fuzzy query'),
                 operator: 'LIKE',
                 sortable: false,
             },
-            { label: t('cms.block.状态'), prop: '状态', align: 'center', render: 'tag', operator: 'eq', sortable: false, replaceValue: {} },
-            { label: t('cms.block.创建时间'), prop: '创建时间', align: 'center', operator: 'eq', sortable: false },
-            { label: t('cms.block.更新时间'), prop: '更新时间', align: 'center', operator: 'eq', sortable: false },
+            {
+                label: t('cmsManage.block.cb_status'),
+                prop: '状态',
+                align: 'center',
+                render: 'tag',
+                operator: 'eq',
+                sortable: false,
+                replaceValue: {},
+            },
+            { label: t('cmsManage.block.cb_created_at'), prop: '创建时间', align: 'center', operator: false },
+            { label: t('cmsManage.block.cb_updated_at'), prop: '更新时间', align: 'center', operator: false },
             { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
         ],
         dblClickNotEditColumn: [undefined],
     },
     {
-        defaultItems: { 状态: 0, 创建时间: 0, 更新时间: 0 },
+        defaultItems: { cb_status: 0, cb_created_at: 0, cb_updated_at: 0 },
     }
 )
+
+baTable.auth = (node: string) => {
+    return true
+}
 
 provide('baTable', baTable)
 

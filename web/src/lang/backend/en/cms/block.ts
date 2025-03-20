@@ -1,6 +1,9 @@
 export default {
-    '名称': '名称',
-    '标识符': '标识符',
-    '状态': '状态',
-    'quick Search Fields': '编号',
+    cb_id: '编号',
+    cb_name: '名称',
+    cb_key: '标识符',
+    cb_status: '状态',
+    cb_created_at: '创建时间',
+    cb_updated_at: '更新时间',
+    'quick Search Fields': '',
 }

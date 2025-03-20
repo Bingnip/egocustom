@@ -69,13 +69,10 @@ class CurrencyConfig extends Backend
     {
         if ($this->request->isPost()) {
             $this->success('保存成功');
-
         } else {
             $id   = $this->request->param('crc_id');
             $info = $this->model->getRowById($id);
-            $this->success('', [
-                'info' => $info
-            ]);
+            $this->success('', ['row' => $info]);
         }
     }
 

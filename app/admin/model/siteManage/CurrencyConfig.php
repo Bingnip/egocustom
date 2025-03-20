@@ -18,6 +18,12 @@ class CurrencyConfig extends Model
         return Db::name($this->tableName)->order(['crc_default' => 'desc', 'crc_order' => 'desc'])->select()->toArray();
     }
 
+    public function updateRowById(int $id, array $data): bool
+    {
+        $data['crc_updated_at'] = time();
+        return Db::name($this->tableName)->where(['crc_id' => $id])->update($data);
+    }
+
     public function add(array $data): bool
     {
         $data['crc_created_at'] = time();

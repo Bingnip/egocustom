@@ -119,10 +119,6 @@ onMounted(() => {
         baTable.dragSort()
     })
 })
-
-baTable.requestEdit()?.then((res) => {
-    console.log(res)
-})
 </script>
 
 <style scoped lang="scss"></style>

@@ -18,7 +18,7 @@
             <div
                 class="ba-operate-form"
                 :class="'ba-' + baTable.form.operate + '-form'"
-                :style="config.layout.shrink ? '':'width: calc(100% - ' + baTable.form.labelWidth! / 2 + 'px)'"
+                :style="config.layout.shrink ? '' : 'width: calc(100% - ' + baTable.form.labelWidth! / 2 + 'px)'"
             >
                 <el-form
                     v-if="!baTable.form.loading"
@@ -30,12 +30,42 @@
                     :label-width="baTable.form.labelWidth + 'px'"
                     :rules="rules"
                 >
-                    <FormItem :label="t('cms.block.编号')" type="string" v-model="baTable.form.items!.编号" prop="编号" :placeholder="t('Please input field', { field: t('cms.block.编号') })" />
-                    <FormItem :label="t('cms.block.名称')" type="string" v-model="baTable.form.items!.名称" prop="名称" :placeholder="t('Please input field', { field: t('cms.block.名称') })" />
-                    <FormItem :label="t('cms.block.标识符')" type="string" v-model="baTable.form.items!.标识符" prop="标识符" :placeholder="t('Please input field', { field: t('cms.block.标识符') })" />
-                    <FormItem :label="t('cms.block.状态')" type="number" prop="状态" :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.状态" :placeholder="t('Please input field', { field: t('cms.block.状态') })" />
-                    <FormItem :label="t('cms.block.创建时间')" type="number" prop="创建时间" :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.创建时间" :placeholder="t('Please input field', { field: t('cms.block.创建时间') })" />
-                    <FormItem :label="t('cms.block.更新时间')" type="number" prop="更新时间" :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.更新时间" :placeholder="t('Please input field', { field: t('cms.block.更新时间') })" />
+                    <FormItem
+                        :label="t('cmsManage.block.cb_name')"
+                        type="string"
+                        v-model="baTable.form.items!.cb_name"
+                        prop="cb_name"
+                        :placeholder="t('Please input field', { field: t('cmsManage.block.cb_name') })"
+                    />
+                    <FormItem
+                        :label="t('cmsManage.block.cb_key')"
+                        type="string"
+                        v-model="baTable.form.items!.cb_key"
+                        prop="cb_key"
+                        :placeholder="t('Please input field', { field: t('cmsManage.block.cb_key') })"
+                    />
+                    <FormItem
+                        :label="t('State')"
+                        type="radio"
+                        v-model="baTable.form.items!.cb_status"
+                        prop="cb_status"
+                        :data="{ childrenAttr: { border: true }, content: { '0': '禁用', '1': '启用' } }"
+                        :placeholder="t('Please select field', { field: t('State') })"
+                    />
+                    <FormItem
+                        :label="t('cmsManage.block.cb_content')"
+                        type="editor"
+                        v-model="baTable.form.items!.cb_content"
+                        prop="cb_content"
+                        :placeholder="t('Please select field', { field: t('cmsManage.block.cb_content') })"
+                    />
+                    <FormItem
+                        :label="t('cmsManage.block.cb_memo')"
+                        type="textarea"
+                        v-model="baTable.form.items!.cb_memo"
+                        prop="cb_memo"
+                        :placeholder="t('Please select field', { field: t('cmsManage.block.cb_content') })"
+                    />
                 </el-form>
             </div>
         </el-scrollbar>

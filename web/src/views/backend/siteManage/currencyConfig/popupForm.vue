@@ -148,8 +148,8 @@ const rules: Partial<Record<string, FormItemRule[]>> = reactive({
     crc_name: [buildValidatorData({ name: 'required', title: t('siteManage.currencyConfig.crc_name') })],
     crc_sign: [buildValidatorData({ name: 'required', title: t('siteManage.currencyConfig.crc_sign') })],
     crc_icon: [buildValidatorData({ name: 'required', title: t('siteManage.currencyConfig.crc_icon') })],
-    crc_rate: [buildValidatorData({ name: 'number', title: t('siteManage.currencyConfig.crc_rate') })],
-    crc_exchange_rate: [buildValidatorData({ name: 'number', title: t('siteManage.currencyConfig.crc_exchange_rate') })],
+    crc_rate: [buildValidatorData({ name: 'required', title: t('siteManage.currencyConfig.crc_rate') })],
+    crc_exchange_rate: [buildValidatorData({ name: 'required', title: t('siteManage.currencyConfig.crc_exchange_rate') })],
     crc_default: [buildValidatorData({ name: 'number', title: t('siteManage.currencyConfig.crc_default') })],
     crc_order: [buildValidatorData({ name: 'number', title: t('siteManage.currencyConfig.crc_order') })],
 })

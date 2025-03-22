@@ -71,7 +71,7 @@ class CurrencyConfig extends Backend
             $this->success('保存成功');
         } else {
             $id   = $this->request->param('crc_id');
-            $info = $this->model->getRowById($id);
+            $info = $this->model->g√etRowById($id);
             $this->success('', ['row' => $info]);
         }
     }

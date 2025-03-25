@@ -161,15 +161,6 @@ const onIconChange = (uploadFile: UploadFile) => {
 const onIconSuccess = (res: ApiPromise, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     console.log(res)
 }
-
-const onSubmit = (formEl: FormInstance | undefined) => {
-    if (!formEl) return
-    formEl.validate((valid) => {
-        if (valid) {
-            console.log(valid)
-        }
-    })
-}
 </script>
 
 <style scoped lang="scss"></style>

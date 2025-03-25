@@ -44,10 +44,10 @@ class CurrencyConfig extends Validate
             'crc_icon'  => __('crc_icon'),
         ];
         $this->message = array_merge($this->message, [
-            'crc_code.regex' => 'Code必须大写字母',
-            'crc_name.regex' => __('Please input correct name'),
-            'crc_sign.regex' => __('Please input correct sign'),
-            'crc_icon.regex' => __('Please input correct icon'),
+            'crc_code.regex' => '【Code】必须大写字母',
+            'crc_name.regex' => '请填写【货币名称】',
+            'crc_sign.regex' => '请填写【货币符号】',
+            'crc_icon.regex' => '请填写【货币图标】',
         ]);
         parent::__construct();
     }

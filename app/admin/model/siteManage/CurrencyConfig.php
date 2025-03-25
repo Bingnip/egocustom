@@ -10,15 +10,37 @@ class CurrencyConfig extends Model
 {
     protected $tableName = 'currency_config';
 
-    protected $autoWriteTimestamp = true;
-    protected $updateTime         = true;
-
-    public function getList(): array
+    public function getList(array $where): array
     {
-        return Db::name($this->tableName)->order(['crc_default' => 'desc', 'crc_order' => 'desc'])->select()->toArray();
+        $query = Db::name($this->tableName);
+
+        $query->where(function ($query) use ($where) {
+            if (!$where) return false;
+
+            if (isset($where['crc_name'])) {
+                $query->where('crc_name', 'LIKE', '%' . $where['crc_name'] . '%');
+            }
+        });
+
+        $order = ['crc_default' => 'desc', 'crc_order' => 'desc'];
+
+        return $query->order($order)->select()->toArray();
     }
 
-    public function updateRowById(int $id, array $data): bool
+    public function getCount(array $where): int
+    {
+        $query = Db::name($this->tableName);
+
+        $query->where(function ($query) use ($where) {
+            if (isset($where['crc_name'])) {
+                $query->where('crc_name', $where['crc_name']);
+            }
+        });
+
+        return $query->count();
+    }
+
+    public function updateRowById(int|string $id, array $data): bool
     {
         $data['crc_updated_at'] = time();
         return Db::name($this->tableName)->where(['crc_id' => $id])->update($data);
@@ -30,7 +52,7 @@ class CurrencyConfig extends Model
         return Db::name($this->tableName)->insert($data);
     }
 
-    public function getRowByCode($code): bool|array
+    public function getRowByCode(string $code): bool|array
     {
         $row = Db::name($this->tableName)
             ->where('crc_code', $code)

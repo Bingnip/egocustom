@@ -42,6 +42,7 @@
                         type="string"
                         v-model="baTable.form.items!.cb_key"
                         prop="cb_key"
+                        block-help="仅限小写字母、数字和下划线"
                         :placeholder="t('Please input field', { field: t('cmsManage.block.cb_key') })"
                     />
                     <FormItem
@@ -64,7 +65,8 @@
                         type="textarea"
                         v-model="baTable.form.items!.cb_memo"
                         prop="cb_memo"
-                        :placeholder="t('Please select field', { field: t('cmsManage.block.cb_content') })"
+                        :placeholder="t('Please select field', { field: t('cmsManage.block.cb_memo') })"
+                        :input-attr="{ rows: 4 }"
                     />
                 </el-form>
             </div>
@@ -81,7 +83,6 @@
 </template>
 
 <script setup lang="ts">
-çç
 import type { FormInstance, FormItemRule } from 'element-plus'
 import { inject, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -89,6 +90,7 @@ import FormItem from '/@/components/formItem/index.vue'
 import { useConfig } from '/@/stores/config'
 import type baTableClass from '/@/utils/baTable'
 import { buildValidatorData } from '/@/utils/validate'
+import * as StaticBlock from '/@/api/backend/cmsManage/block'
 
 const config = useConfig()
 const formRef = ref<FormInstance>()
@@ -97,11 +99,9 @@ const baTable = inject('baTable') as baTableClass
 const { t } = useI18n()
 
 const rules: Partial<Record<string, FormItemRule[]>> = reactive({
-    名称: [buildValidatorData({ name: 'required', title: t('cms.block.名称') })],
-    标识符: [buildValidatorData({ name: 'required', title: t('cms.block.标识符') })],
-    状态: [buildValidatorData({ name: 'number', title: t('cms.block.状态') })],
-    创建时间: [buildValidatorData({ name: 'number', title: t('cms.block.创建时间') })],
-    更新时间: [buildValidatorData({ name: 'number', title: t('cms.block.更新时间') })],
+    cb_name: [buildValidatorData({ name: 'required', title: t('cmsManage.block.cb_name') })],
+    cb_key: [buildValidatorData({ name: 'required', title: t('cmsManage.block.cb_key') })],
+    cb_content: [buildValidatorData({ name: 'required', title: t('cmsManage.block.cb_content') })],
 })
 </script>
 

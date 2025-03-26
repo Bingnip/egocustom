@@ -6,7 +6,7 @@
         <!-- 表格顶部菜单 -->
         <!-- 自定义按钮请使用插槽，甚至公共搜索也可以使用具名插槽渲染，参见文档 -->
         <TableHeader :buttons="['refresh', 'add', 'delete', 'comSearch', 'quickSearch', 'columnDisplay']"
-            :quick-search-placeholder="t('Quick search placeholder', { fields: t('static.page.quick Search Fields') })">
+            :quick-search-placeholder="t('Quick search placeholder', { fields: t('cmsManage.page.quick Search Fields') })">
         </TableHeader>
 
         <!-- 表格 -->
@@ -45,16 +45,16 @@
         {
             column: [
                 { type: 'selection', align: 'center', operator: false },
-                { label: t('page.pb_id'), prop: 'pb_id', align: 'center', width: 40, operator: 'eq', sortable: 'custom' },
-                { label: t('page.pb_title'), prop: 'pb_title', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
-                { label: t('page.pb_url_key'), prop: 'pb_url_key', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
-                { label: t('page.pb_meta_title'), prop: 'pb_meta_title', align: 'center', operator: false, sortable: false },
-                { label: t('page.pb_meta_key'), prop: 'pb_meta_key', align: 'center', operator: false, sortable: false },
-                { label: t('page.pb_meta_desc'), prop: 'pb_meta_desc', align: 'center', operator: false, sortable: false },
-                { label: t('page.pb_status'), prop: 'pb_status', align: 'center', operator: 'eq', sortable: false },
-                { label: t('page.pb_created_at'), prop: 'pb_created_at', align: 'center', operator: 'RANGE', sortable: false },
-                { label: t('page.pb_updated_at'), prop: 'pb_updated_at', align: 'center', operator: 'RANGE', sortable: false },
-                { label: t('page.pb_deleted_at'), prop: 'pb_deleted_at', align: 'center', operator: 'RANGE', sortable: false },
+                { label: t('cmsManage.page.pb_id'), prop: 'pb_id', align: 'center', width: 40, operator: 'eq', sortable: 'custom' },
+                { label: t('cmsManage.page.pb_title'), prop: 'pb_title', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
+                { label: t('cmsManage.page.pb_url_key'), prop: 'pb_url_key', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
+                { label: t('cmsManage.page.pb_meta_title'), prop: 'pb_meta_title', align: 'center', operator: false, sortable: false },
+                { label: t('cmsManage.page.pb_meta_key'), prop: 'pb_meta_key', align: 'center', operator: false, sortable: false },
+                { label: t('cmsManage.page.pb_meta_desc'), prop: 'pb_meta_desc', align: 'center', operator: false, sortable: false },
+                { label: t('State'), prop: 'pb_status', align: 'center', operator: 'eq', sortable: false },
+                { label: t('cmsManage.page.pb_created_at'), prop: 'pb_created_at', align: 'center', operator: 'RANGE', sortable: false },
+                { label: t('cmsManage.page.pb_updated_at'), prop: 'pb_updated_at', align: 'center', operator: 'RANGE', sortable: false },
+                { label: t('cmsManage.page.pb_deleted_at'), prop: 'pb_deleted_at', align: 'center', operator: 'RANGE', sortable: false },
                 { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
             ],
             dblClickNotEditColumn: [undefined],
@@ -64,6 +64,10 @@
             defaultItems: { pb_id: null, pb_status: 0, pb_created_at: 0, pb_updated_at: 0, pb_deleted_at: 0 },
         }
     )
+
+    baTable.auth = (node: string) => {
+        return true
+    }
 
     provide('baTable', baTable)
 

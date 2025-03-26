@@ -16,22 +16,23 @@
                     @keyup.enter="baTable.onSubmit(formRef)" :model="baTable.form.items"
                     :label-position="config.layout.shrink ? 'top' : 'right'"
                     :label-width="baTable.form.labelWidth + 'px'" :rules="rules">
-                    <FormItem :label="t('static.page.pb_id')" type="string" v-model="baTable.form.items!.pb_id"
-                        prop="pb_id" :placeholder="t('Please input field', { field: t('static.page.pb_id') })" />
-                    <FormItem :label="t('static.page.pb_title')" type="string" v-model="baTable.form.items!.pb_title"
-                        prop="pb_title" :placeholder="t('Please input field', { field: t('static.page.pb_title') })" />
-                    <FormItem :label="t('static.page.pb_url_key')" type="string"
+                    <FormItem :label="t('cmsManage.page.pb_id')" type="string" v-model="baTable.form.items!.pb_id"
+                        prop="pb_id" :placeholder="t('Please input field', { field: t('cmsManage.page.pb_id') })" />
+                    <FormItem :label="t('cmsManage.page.pb_title')" type="string" v-model="baTable.form.items!.pb_title"
+                        prop="pb_title"
+                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_title') })" />
+                    <FormItem :label="t('cmsManage.page.pb_url_key')" type="string"
                         v-model="baTable.form.items!.pb_url_key" prop="pb_url_key"
-                        :placeholder="t('Please input field', { field: t('static.page.pb_url_key') })" />
+                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_url_key') })" />
                     <FormItem :label="t('State')" type="number" prop="pb_status" :input-attr="{ step: 1 }"
                         v-model.number="baTable.form.items!.pb_status"
-                        :placeholder="t('Please input field', { field: t('static.page.pb_status') })" />
-                    <FormItem :label="t('static.page.pb_created_at')" type="number" prop="pb_created_at"
+                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_status') })" />
+                    <FormItem :label="t('cmsManage.page.pb_created_at')" type="number" prop="pb_created_at"
                         :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.pb_created_at"
-                        :placeholder="t('Please input field', { field: t('static.page.pb_created_at') })" />
-                    <FormItem :label="t('static.page.pb_updated_at')" type="number" prop="pb_updated_at"
+                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_created_at') })" />
+                    <FormItem :label="t('cmsManage.page.pb_updated_at')" type="number" prop="pb_updated_at"
                         :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.pb_updated_at"
-                        :placeholder="t('Please input field', { field: t('static.page.pb_updated_at') })" />
+                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_updated_at') })" />
                 </el-form>
             </div>
         </el-scrollbar>
@@ -64,13 +65,13 @@
     const { t } = useI18n()
 
     const rules: Partial<Record<string, FormItemRule[]>> = reactive({
-        pb_title: [buildValidatorData({ name: 'required', title: t('static.page.pb_title'), message: '名称必填' })],
-        pb_url_key: [buildValidatorData({ name: 'required', title: t('static.page.pb_url_key'), message: 'url key 必填' })],
-        pb_content: [buildValidatorData({ name: 'editorRequired', title: t('static.page.pb_content') })],
-        pb_status: [buildValidatorData({ name: 'number', title: t('static.page.pb_status') })],
-        pb_created_at: [buildValidatorData({ name: 'number', title: t('static.page.pb_created_at') })],
-        pb_updated_at: [buildValidatorData({ name: 'number', title: t('static.page.pb_updated_at') })],
-        pb_deleted_at: [buildValidatorData({ name: 'number', title: t('static.page.pb_deleted_at') })],
+        pb_title: [buildValidatorData({ name: 'required', title: t('cmsManage.page.pb_title'), message: '名称必填' })],
+        pb_url_key: [buildValidatorData({ name: 'required', title: t('cmsManage.page.pb_url_key'), message: 'url key 必填' })],
+        pb_content: [buildValidatorData({ name: 'editorRequired', title: t('cmsManage.page.pb_content') })],
+        pb_status: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_status') })],
+        pb_created_at: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_created_at') })],
+        pb_updated_at: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_updated_at') })],
+        pb_deleted_at: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_deleted_at') })],
     })
 </script>
 

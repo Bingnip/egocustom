@@ -13,4 +13,5 @@ export default {
     [adminBaseRoutePath + '/crud/crud']: ['./backend/${lang}/crud/log.ts', './backend/${lang}/crud/state.ts'],
     [adminBaseRoutePath + '/site/currencyConfig']: ['./backend/${lang}/siteManage/currencyConfig.ts'],
     [adminBaseRoutePath + '/cms/block']: ['./backend/${lang}/cmsManage/block.ts'],
+    [adminBaseRoutePath + '/cms/page']: ['./backend/${lang}/cmsManage/page.ts'],
 }

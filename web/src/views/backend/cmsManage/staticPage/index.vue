@@ -45,7 +45,7 @@
         {
             column: [
                 { type: 'selection', align: 'center', operator: false },
-                { label: t('cmsManage.page.pb_id'), prop: 'pb_id', align: 'center', width: 40, operator: 'eq', sortable: 'custom' },
+                { label: t('cmsManage.page.pb_id'), prop: 'pb_id', align: 'center', width: 80, operator: 'eq', sortable: 'custom' },
                 { label: t('cmsManage.page.pb_title'), prop: 'pb_title', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
                 { label: t('cmsManage.page.pb_url_key'), prop: 'pb_url_key', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
                 { label: t('cmsManage.page.pb_meta_title'), prop: 'pb_meta_title', align: 'center', operator: false, sortable: false },
@@ -54,7 +54,6 @@
                 { label: t('State'), prop: 'pb_status', align: 'center', operator: 'eq', sortable: false },
                 { label: t('cmsManage.page.pb_created_at'), prop: 'pb_created_at', align: 'center', operator: 'RANGE', sortable: false },
                 { label: t('cmsManage.page.pb_updated_at'), prop: 'pb_updated_at', align: 'center', operator: 'RANGE', sortable: false },
-                { label: t('cmsManage.page.pb_deleted_at'), prop: 'pb_deleted_at', align: 'center', operator: 'RANGE', sortable: false },
                 { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
             ],
             dblClickNotEditColumn: [undefined],

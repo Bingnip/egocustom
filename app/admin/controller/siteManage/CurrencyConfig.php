@@ -28,8 +28,10 @@ class CurrencyConfig extends Backend
     public function index(): void
     {
         $params = $this->request->param();
-        $list = $this->model->getList($params['search']);
-        $count = $this->model->getCount($params['search']);
+        $where = !empty($params) ? array_column($params['search'], 'val', 'field') : [];
+
+        $list = $this->model->getList($where);
+        $count = $this->model->getCount($where);
 
         $this->success('', [
             'list'   => $list,

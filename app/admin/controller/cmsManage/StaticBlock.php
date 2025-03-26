@@ -25,8 +25,10 @@ class StaticBlock extends Backend
     public function index(): void
     {
         $params = $this->request->param();
-        $list = $this->model->getList($params);
-        $count = $this->model->getCount($params);
+        $where = !empty($params) ? array_column($params['search'], 'val', 'field') : [];
+
+        $list = $this->model->getList($where);
+        $count = $this->model->getCount($where);
 
         $this->success('', [
             'list'   => $list,

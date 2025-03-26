@@ -13,7 +13,7 @@ class StaticBlock extends Model
     // 表名
     protected $tableName = 'static_block';
 
-    public function getList(array $where): array
+    public function getList(array $where = []): array
     {
         $query = Db::name($this->tableName);
 
@@ -31,9 +31,20 @@ class StaticBlock extends Model
         return $query->order($order)->select()->toArray();
     }
 
-    public function getCount(array $where): int
+    public function getCount(array $where = []): int
     {
-        return Db::name($this->tableName)->count();
+        $query = Db::name($this->tableName);
+
+        $query->where(function ($query) use ($where) {
+            if (isset($where['cb_name'])) {
+                $query->where('cb_name', 'LIKE', '%' . $where['cb_name'] . '%');
+            }
+            if (isset($where['cb_key'])) {
+                $query->where('cb_key', 'LIKE', '%' . $where['cb_key'] . '%');
+            }
+        });
+
+        return $query->count();
     }
 
     public function add(array $data): bool

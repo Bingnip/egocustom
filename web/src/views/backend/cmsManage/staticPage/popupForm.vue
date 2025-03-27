@@ -3,39 +3,46 @@
     <!-- 建议使用 Prettier 格式化代码 -->
     <!-- el-form 内可以混用 el-form-item、FormItem、ba-input 等输入组件 -->
     <el-dialog class="ba-operate-dialog" :close-on-click-modal="false"
-        :model-value="['Add', 'Edit'].includes(baTable.form.operate!)" @close="baTable.toggleForm" width="50%">
+        :model-value="['Add', 'Edit'].includes(baTable.form.operate!)" @close="baTable.toggleForm" width="85%" top="5vh"
+        :style="{ height: '900px' }">
         <template #header>
             <div class="title" v-drag="['.ba-operate-dialog', '.el-dialog__header']" v-zoom="'.ba-operate-dialog'">
                 {{ baTable.form.operate ? t(baTable.form.operate) : '' }}
             </div>
         </template>
-        <el-scrollbar v-loading="baTable.form.loading" class="ba-table-form-scrollbar">
-            <div class="ba-operate-form" :class="'ba-' + baTable.form.operate + '-form'"
-                :style="config.layout.shrink ? '':'width: calc(100% - ' + baTable.form.labelWidth! / 2 + 'px)'">
-                <el-form v-if="!baTable.form.loading" ref="formRef" @submit.prevent=""
-                    @keyup.enter="baTable.onSubmit(formRef)" :model="baTable.form.items"
-                    :label-position="config.layout.shrink ? 'top' : 'right'"
-                    :label-width="baTable.form.labelWidth + 'px'" :rules="rules">
-                    <FormItem :label="t('cmsManage.page.pb_id')" type="string" v-model="baTable.form.items!.pb_id"
-                        prop="pb_id" :placeholder="t('Please input field', { field: t('cmsManage.page.pb_id') })" />
-                    <FormItem :label="t('cmsManage.page.pb_title')" type="string" v-model="baTable.form.items!.pb_title"
-                        prop="pb_title"
-                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_title') })" />
-                    <FormItem :label="t('cmsManage.page.pb_url_key')" type="string"
-                        v-model="baTable.form.items!.pb_url_key" prop="pb_url_key"
-                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_url_key') })" />
-                    <FormItem :label="t('State')" type="number" prop="pb_status" :input-attr="{ step: 1 }"
-                        v-model.number="baTable.form.items!.pb_status"
-                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_status') })" />
-                    <FormItem :label="t('cmsManage.page.pb_created_at')" type="number" prop="pb_created_at"
-                        :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.pb_created_at"
-                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_created_at') })" />
-                    <FormItem :label="t('cmsManage.page.pb_updated_at')" type="number" prop="pb_updated_at"
-                        :input-attr="{ step: 1 }" v-model.number="baTable.form.items!.pb_updated_at"
-                        :placeholder="t('Please input field', { field: t('cmsManage.page.pb_updated_at') })" />
-                </el-form>
-            </div>
-        </el-scrollbar>
+        <div class="ba-operate-form" :class="'ba-' + baTable.form.operate + '-form'"
+            :style="config.layout.shrink ? '':'width: calc(100% - ' + baTable.form.labelWidth! / 2 + 'px)'">
+            <el-form v-if="!baTable.form.loading" ref="formRef" @submit.prevent=""
+                @keyup.enter="baTable.onSubmit(formRef)" :model="baTable.form.items"
+                :label-position="config.layout.shrink ? 'top' : 'right'" :label-width="baTable.form.labelWidth + 'px'"
+                :rules="rules">
+                <FormItem :label="t('cmsManage.page.pb_title')" type="string" v-model="baTable.form.items!.pb_title"
+                    prop="pb_title" :placeholder="t('Please input field', { field: t('cmsManage.page.pb_title') })"
+                    :inputAttr="{ style: { width: '500px' } }" />
+                <FormItem :label="t('cmsManage.page.pb_url_key')" type="string" v-model="baTable.form.items!.pb_url_key"
+                    prop="pb_url_key" :placeholder="t('Please input field', { field: t('cmsManage.page.pb_url_key') })"
+                    :inputAttr="{ style: { width: '500px' } }" />
+                <FormItem :label="t('State')" type="radio" v-model="baTable.form.items!.pb_status" prop="pb_status"
+                    :data="{ childrenAttr: { border: true }, content: { '0': '禁用', '1': '启用' } }"
+                    :input-attr="{fill: '#F56C6C', size: 'default'}"
+                    :placeholder="t('Please select field', { field: t('State') })" />
+                <FormItem :label="t('cmsManage.page.pb_content')" type="editor" prop="pb_content"
+                    v-model.number="baTable.form.items!.pb_content"
+                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_content') })" />
+                <FormItem :label="t('cmsManage.page.pb_meta_title')" type="textarea" prop="pb_meta_title"
+                    v-model.number="baTable.form.items!.pb_meta_title"
+                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_title') })"
+                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '700px' } }" />
+                <FormItem :label="t('cmsManage.page.pb_meta_key')" type="textarea" prop="pb_meta_key"
+                    v-model.number="baTable.form.items!.pb_meta_key"
+                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_key') })"
+                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '700px' } }" />
+                <FormItem :label="t('cmsManage.page.pb_meta_desc')" type="textarea" prop="pb_meta_desc"
+                    v-model.number="baTable.form.items!.pb_meta_desc"
+                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_desc') })"
+                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '700px' } }" />
+            </el-form>
+        </div>
         <template #footer>
             <div :style="'width: calc(100% - ' + baTable.form.labelWidth! / 1.8 + 'px)'">
                 <el-button @click="baTable.toggleForm()">{{ t('Cancel') }}</el-button>

@@ -76,8 +76,8 @@ class StaticBlock extends Backend
                 }
             }
 
-            $isExist = $this->model->getRowByKey($post['cb_key']);
-            if ($isExist) $this->error('已添加存在');
+            $isExist = $this->model->getRowByKey($post['cb_key'], intval($post['cb_id']));
+            if ($isExist) $this->error('标识符已存在，请更改');
 
             $cbId = $post['cb_id'];
             $this->model->updateRowById($cbId, $post);

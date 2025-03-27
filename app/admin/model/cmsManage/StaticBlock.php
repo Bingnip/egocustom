@@ -24,6 +24,9 @@ class StaticBlock extends Model
             if (isset($where['cb_key'])) {
                 $query->where('cb_key', 'LIKE', '%' . $where['cb_key'] . '%');
             }
+            if (isset($where['cb_status'])) {
+                $query->where('cb_status', '=', $where['cb_status']);
+            }
         });
 
         $order = ['cb_id' => 'desc'];
@@ -42,6 +45,9 @@ class StaticBlock extends Model
             if (isset($where['cb_key'])) {
                 $query->where('cb_key', 'LIKE', '%' . $where['cb_key'] . '%');
             }
+            if (isset($where['cb_status'])) {
+                $query->where('cb_status', '=', $where['cb_status']);
+            }
         });
 
         return $query->count();
@@ -53,10 +59,11 @@ class StaticBlock extends Model
         return Db::name($this->tableName)->insert($data);
     }
 
-    public function getRowByKey(string $key): bool|array
+    public function getRowByKey(string $key, int $id): bool|array
     {
         $row = Db::name($this->tableName)
             ->where('cb_key', $key)
+            ->where('cb_id', '<>', $id)
             ->find();
 
         return $row ?: false;

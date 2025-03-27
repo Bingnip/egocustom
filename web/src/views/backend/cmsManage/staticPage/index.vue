@@ -41,26 +41,33 @@
      * baTable 内包含了表格的所有数据且数据具备响应性，然后通过 provide 注入给了后代组件
      */
     const baTable = new baTableClass(
-        new baTableApi('/admin/static.Page/'),
+        new baTableApi('/admin/cmsManage.StaticPage/'),
         {
+            pk: 'pb_id',
             column: [
                 { type: 'selection', align: 'center', operator: false },
-                { label: t('cmsManage.page.pb_id'), prop: 'pb_id', align: 'center', width: 80, sortable: 'custom' },
+                { label: t('cmsManage.page.pb_id'), prop: 'pb_id', align: 'center', width: 80, operator: false, sortable: false },
                 { label: t('cmsManage.page.pb_title'), prop: 'pb_title', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
-                { label: t('cmsManage.page.pb_url_key'), prop: 'pb_url_key', align: 'center', operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
-                { label: t('cmsManage.page.pb_meta_title'), prop: 'pb_meta_title', align: 'center', operator: false, sortable: false },
-                { label: t('cmsManage.page.pb_meta_key'), prop: 'pb_meta_key', align: 'center', operator: false, sortable: false },
-                { label: t('cmsManage.page.pb_meta_desc'), prop: 'pb_meta_desc', align: 'center', operator: false, sortable: false },
-                { label: t('State'), prop: 'pb_status', align: 'center', operator: 'eq', sortable: false },
-                { label: t('cmsManage.page.pb_created_at'), prop: 'pb_created_at', align: 'center', sortable: false },
-                { label: t('cmsManage.page.pb_updated_at'), prop: 'pb_updated_at', align: 'center', sortable: false },
+                { label: t('cmsManage.page.pb_url_key'), prop: 'pb_url_key', align: 'center', width: 180, operatorPlaceholder: t('Fuzzy query'), operator: 'LIKE', sortable: false },
+                {
+                    label: t('State'),
+                    prop: 'pb_status',
+                    align: 'center',
+                    render: 'tag',
+                    custom: { '0': 'danger', '1': 'success' },
+                    replaceValue: { '0': t('Disable'), '1': t('Enable') },
+                    width: 70,
+                    operator: '=',
+                },
+                { label: t('cmsManage.page.pb_created_at'), prop: 'pb_created_at', align: 'center', operator: false, render: 'datetime' },
+                { label: t('cmsManage.page.pb_updated_at'), prop: 'pb_updated_at', align: 'center', operator: false, render: 'datetime' },
                 { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
             ],
             dblClickNotEditColumn: [undefined],
             defaultOrder: { prop: 'pb_id', order: 'desc' },
         },
         {
-            defaultItems: { pb_id: null, pb_status: 0, pb_created_at: 0, pb_updated_at: 0, pb_deleted_at: 0 },
+            defaultItems: { pb_status: 0, pb_created_at: 0, pb_updated_at: 0, pb_deleted_at: 0 },
         }
     )
 

@@ -74,11 +74,9 @@
     const rules: Partial<Record<string, FormItemRule[]>> = reactive({
         pb_title: [buildValidatorData({ name: 'required', title: t('cmsManage.page.pb_title'), message: '名称必填' })],
         pb_url_key: [buildValidatorData({ name: 'required', title: t('cmsManage.page.pb_url_key'), message: 'url key 必填' })],
-        pb_content: [buildValidatorData({ name: 'editorRequired', title: t('cmsManage.page.pb_content') })],
-        pb_status: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_status') })],
-        pb_created_at: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_created_at') })],
-        pb_updated_at: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_updated_at') })],
-        pb_deleted_at: [buildValidatorData({ name: 'number', title: t('cmsManage.page.pb_deleted_at') })],
+        pb_content: [buildValidatorData({
+            name: 'editorRequired', title: t('cmsManage.page.pb_content'), message: '正文 必填'
+        })],
     })
 </script>
 

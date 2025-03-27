@@ -55,7 +55,7 @@
                 { type: 'selection', align: 'center', operator: false },
                 { label: t('siteManage.currencyConfig.crc_id'), prop: 'crc_id', align: 'center', width: 70, operator: false },
                 { label: t('siteManage.currencyConfig.crc_code'), prop: 'crc_code', align: 'center', width: 80, operator: false },
-                { label: t('siteManage.currencyConfig.crc_name'), prop: 'crc_name', align: 'center', width: 140 },
+                { label: t('siteManage.currencyConfig.crc_name'), prop: 'crc_name', align: 'center', width: 140, operatorPlaceholder: t('Fuzzy query') },
                 { label: t('siteManage.currencyConfig.crc_sign'), prop: 'crc_sign', align: 'center', width: 80, operator: false },
                 { label: t('siteManage.currencyConfig.crc_rate') + '（与美元）', prop: 'crc_rate', align: 'center', width: 140, operator: false },
                 { label: t('siteManage.currencyConfig.crc_exchange_rate'), prop: 'crc_exchange_rate', align: 'center', width: 140, operator: false },

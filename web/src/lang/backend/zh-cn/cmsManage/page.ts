@@ -1,6 +1,6 @@
 export default {
     pb_id: '编号',
-    pb_title: '名称',
+    pb_title: '标题',
     pb_url_key: 'URL KEY',
     pb_meta_title: 'META标题',
     pb_meta_key: 'META关键字',

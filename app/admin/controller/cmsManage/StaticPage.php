@@ -1,30 +1,27 @@
 <?php
 declare (strict_types=1);
 
-namespace app\admin\controller\siteManage;
+namespace app\admin\controller\cmsManage;
 
-use app\admin\model\siteManage as SiteManage;
+use app\admin\model\cmsManage as CmsManage;
 use app\common\controller\Backend;
 use Throwable;
 
 /**
- * 货币管理
+ * 静态区域
  */
-class CurrencyConfig extends Backend
+class StaticPage extends Backend
 {
     protected object $model;
 
-    protected string|array $quickSearchField = ['序号'];
+    protected string|array $quickSearchField = ['pb_key', 'pb_title', 'pb_status'];
 
     public function initialize(): void
     {
         parent::initialize();
-        $this->model = new SiteManage\CurrencyConfig();
+        $this->model = new CmsManage\StaticPage();
     }
 
-    /**
-     * 若需重写查看、编辑、删除等方法，请复制 @see \app\admin\library\traits\Backend 中对应的方法至此进行重写
-     */
     public function index(): void
     {
         $params = $this->request->param();
@@ -44,6 +41,7 @@ class CurrencyConfig extends Backend
     {
         if (!$this->request->isPost()) $this->error(__('Post error'));
         $post = $this->request->post();
+        if (!$post) $this->error(__('Parameter %s can not be empty', ['pb_url_key', 'pb_title', 'pb_status']));
 
         if ($this->modelValidate) {
             try {
@@ -55,13 +53,8 @@ class CurrencyConfig extends Backend
             }
         }
 
-        $isExist = $this->model->getRowByCode($post['crc_code']);
-        if ($isExist) $this->error('货币Code已存在');
-
-        if ($post['crc_default'] == 1) {
-            $haveDefault = $this->model->getDefault();
-            if ($haveDefault) $this->error('已设置默认，请先变更');
-        }
+        $key = $post['pb_url_key'];
+        if (!preg_match('/^[a-z0-9_-]+$/', $key)) $this->error('【标识符】仅限小写字母、数字、横杠、下划线');
 
         $result = $this->model->add($post);
         if (!$result) $this->error(__('No rows were added'));
@@ -82,11 +75,15 @@ class CurrencyConfig extends Backend
                     $this->error($e->getMessage());
                 }
             }
-            $crcId = $post['crc_id'];
-            $this->model->updateRowById($crcId, $post);
+
+            $isExist = $this->model->getRowByKey($post['pb_url_key'], intval($post['pb_id']));
+            if ($isExist) $this->error('URL KEY 已存在，请更改');
+
+            $id = $post['pb_id'];
+            $this->model->updateRowById($id, $post);
             $this->success('保存成功');
         } else {
-            $id   = $this->request->param('crc_id');
+            $id   = $this->request->param('pb_id');
             $info = $this->model->getRowById($id);
             $this->success('', ['row' => $info]);
         }

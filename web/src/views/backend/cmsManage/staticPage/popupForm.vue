@@ -4,7 +4,7 @@
     <!-- el-form 内可以混用 el-form-item、FormItem、ba-input 等输入组件 -->
     <el-dialog class="ba-operate-dialog" :close-on-click-modal="false"
         :model-value="['Add', 'Edit'].includes(baTable.form.operate!)" @close="baTable.toggleForm" width="85%" top="5vh"
-        :style="{ height: '900px' }">
+        :style="{ height: '950px' }">
         <template #header>
             <div class="title" v-drag="['.ba-operate-dialog', '.el-dialog__header']" v-zoom="'.ba-operate-dialog'">
                 {{ baTable.form.operate ? t(baTable.form.operate) : '' }}
@@ -32,15 +32,15 @@
                 <FormItem :label="t('cmsManage.page.pb_meta_title')" type="textarea" prop="pb_meta_title"
                     v-model.number="baTable.form.items!.pb_meta_title"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_title') })"
-                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '700px' } }" />
+                    :input-attr="{ rows: 1 }" :inputAttr="{ style: { width: '800px' } }" />
                 <FormItem :label="t('cmsManage.page.pb_meta_key')" type="textarea" prop="pb_meta_key"
                     v-model.number="baTable.form.items!.pb_meta_key"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_key') })"
-                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '700px' } }" />
+                    :input-attr="{ rows: 1 }" :inputAttr="{ style: { width: '800px' } }" />
                 <FormItem :label="t('cmsManage.page.pb_meta_desc')" type="textarea" prop="pb_meta_desc"
                     v-model.number="baTable.form.items!.pb_meta_desc"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_desc') })"
-                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '700px' } }" />
+                    :input-attr="{ rows: 5 }" :inputAttr="{ style: { width: '1200px' } }" />
             </el-form>
         </div>
         <template #footer>

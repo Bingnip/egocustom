@@ -29,18 +29,18 @@
                 <FormItem :label="t('cmsManage.page.pb_content')" type="editor" prop="pb_content"
                     v-model.number="baTable.form.items!.pb_content"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_content') })" />
-                <FormItem :label="t('cmsManage.page.pb_meta_title')" type="textarea" prop="pb_meta_title"
+                <FormItem :label="t('cmsManage.page.pb_meta_title')" type="string" prop="pb_meta_title"
                     v-model.number="baTable.form.items!.pb_meta_title"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_title') })"
-                    :input-attr="{ rows: 1 }" :inputAttr="{ style: { width: '800px' } }" />
+                    :inputAttr="{ style: { width: '800px' } }" />
                 <FormItem :label="t('cmsManage.page.pb_meta_key')" type="textarea" prop="pb_meta_key"
                     v-model.number="baTable.form.items!.pb_meta_key"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_key') })"
-                    :input-attr="{ rows: 1 }" :inputAttr="{ style: { width: '800px' } }" />
+                    :input-attr="{ rows: 2 }" :inputAttr="{ style: { width: '800px' } }" />
                 <FormItem :label="t('cmsManage.page.pb_meta_desc')" type="textarea" prop="pb_meta_desc"
                     v-model.number="baTable.form.items!.pb_meta_desc"
                     :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_desc') })"
-                    :input-attr="{ rows: 5 }" :inputAttr="{ style: { width: '1200px' } }" />
+                    :input-attr="{ rows: 4 }" />
             </el-form>
         </div>
         <template #footer>

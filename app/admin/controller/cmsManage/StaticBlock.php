@@ -65,6 +65,8 @@ class StaticBlock extends Backend
     {
         if ($this->request->isPost()) {
             $post = $this->request->post();
+            if (!$post) $this->error(__('Parameter %s can not be empty', ['cb_name', 'cb_key', 'cb_content']));
+
 
             if ($this->modelValidate) {
                 try {

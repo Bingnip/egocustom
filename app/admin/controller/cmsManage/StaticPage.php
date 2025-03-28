@@ -41,7 +41,7 @@ class StaticPage extends Backend
     {
         if (!$this->request->isPost()) $this->error(__('Post error'));
         $post = $this->request->post();
-        if (!$post) $this->error(__('Parameter %s can not be empty', ['pb_url_key', 'pb_title', 'pb_status']));
+        if (!$post) $this->error(__('Parameter %s can not be empty', ['pb_url_key', 'pb_title', 'pb_status', 'pb_content']));
 
         if ($this->modelValidate) {
             try {
@@ -55,7 +55,6 @@ class StaticPage extends Backend
 
         $key = $post['pb_url_key'];
         if (!preg_match('/^[a-z0-9_-]+$/', $key)) $this->error('【标识符】仅限小写字母、数字、横杠、下划线');
-
         $result = $this->model->add($post);
         if (!$result) $this->error(__('No rows were added'));
         $this->success(__('Added successfully'));
@@ -65,6 +64,7 @@ class StaticPage extends Backend
     {
         if ($this->request->isPost()) {
             $post = $this->request->post();
+            if (!$post) $this->error(__('Parameter %s can not be empty', ['pb_url_key', 'pb_title', 'pb_status', 'pb_content']));
 
             if ($this->modelValidate) {
                 try {

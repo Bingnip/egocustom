@@ -9,7 +9,7 @@
         @close="baTable.toggleForm"
         width="88%"
         top="5vh"
-        :style="{ height: '950px' }"
+        :style="{ height: '880px' }"
     >
         <template #header>
             <div class="title" v-drag="['.ba-operate-dialog', '.el-dialog__header']" v-zoom="'.ba-operate-dialog'">
@@ -32,61 +32,55 @@
                 :rules="rules"
             >
                 <FormItem
-                    :label="t('cmsManage.page.pb_title')"
+                    :label="t('mailManage.template.et_title')"
                     type="string"
-                    v-model="baTable.form.items!.pb_title"
-                    prop="pb_title"
-                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_title') })"
+                    v-model="baTable.form.items!.et_title"
+                    prop="et_title"
+                    :placeholder="t('Please input field', { field: t('mailManage.template.et_title') })"
                     :inputAttr="{ style: { width: '500px' } }"
                 />
                 <FormItem
-                    :label="t('cmsManage.page.pb_url_key')"
+                    :label="t('mailManage.template.et_key')"
                     type="string"
-                    v-model="baTable.form.items!.pb_url_key"
-                    prop="pb_url_key"
-                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_url_key') })"
+                    v-model="baTable.form.items!.et_key"
+                    prop="et_key"
+                    :placeholder="t('Please input field', { field: t('mailManage.template.et_key') })"
+                    :inputAttr="{ style: { width: '500px' } }"
+                />
+                <FormItem
+                    :label="t('mailManage.template.et_subject')"
+                    type="string"
+                    v-model="baTable.form.items!.et_subject"
+                    prop="et_subject"
+                    :placeholder="t('Please input field', { field: t('mailManage.template.et_subject') })"
                     :inputAttr="{ style: { width: '500px' } }"
                 />
                 <FormItem
                     :label="t('State')"
                     type="radio"
-                    v-model="baTable.form.items!.pb_status"
-                    prop="pb_status"
+                    v-model="baTable.form.items!.et_status"
+                    prop="et_status"
                     :data="{ childrenAttr: { border: true }, content: { '0': '禁用', '1': '启用' } }"
                     :input-attr="{ fill: '#F56C6C', size: 'default' }"
                     :placeholder="t('Please select field', { field: t('State') })"
                 />
                 <FormItem
-                    :label="t('cmsManage.page.pb_content')"
+                    :label="t('mailManage.template.et_content')"
                     type="editor"
-                    prop="pb_content"
-                    v-model.number="baTable.form.items!.pb_content"
-                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_content') })"
+                    v-model="baTable.form.items!.et_content"
+                    prop="et_content"
+                    @keyup.enter.stop=""
+                    @keyup.ctrl.enter="baTable.onSubmit(formRef)"
+                    :placeholder="t('Please input field', { field: t('mailManage.template.et_content') })"
                 />
                 <FormItem
-                    :label="t('cmsManage.page.pb_meta_title')"
-                    type="string"
-                    prop="pb_meta_title"
-                    v-model.number="baTable.form.items!.pb_meta_title"
-                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_title') })"
-                    :inputAttr="{ style: { width: '800px' } }"
-                />
-                <FormItem
-                    :label="t('cmsManage.page.pb_meta_key')"
+                    :label="t('mailManage.template.et_memo')"
                     type="textarea"
-                    prop="pb_meta_key"
-                    v-model.number="baTable.form.items!.pb_meta_key"
-                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_key') })"
-                    :input-attr="{ rows: 2 }"
-                    :inputAttr="{ style: { width: '800px' } }"
-                />
-                <FormItem
-                    :label="t('cmsManage.page.pb_meta_desc')"
-                    type="textarea"
-                    prop="pb_meta_desc"
-                    v-model.number="baTable.form.items!.pb_meta_desc"
-                    :placeholder="t('Please input field', { field: t('cmsManage.page.pb_meta_desc') })"
-                    :input-attr="{ rows: 4 }"
+                    v-model="baTable.form.items!.et_memo"
+                    prop="et_memo"
+                    :placeholder="t('Please input field', { field: t('mailManage.template.et_memo') })"
+                    :input-attr="{ rows: 3 }"
+                    :inputAttr="{ style: { width: '600px' } }"
                 />
             </el-form>
         </div>
@@ -117,15 +111,10 @@ const baTable = inject('baTable') as baTableClass
 const { t } = useI18n()
 
 const rules: Partial<Record<string, FormItemRule[]>> = reactive({
-    pb_title: [buildValidatorData({ name: 'required', title: t('cmsManage.page.pb_title'), message: '名称必填' })],
-    pb_url_key: [buildValidatorData({ name: 'required', title: t('cmsManage.page.pb_url_key'), message: 'url key 必填' })],
-    pb_content: [
-        buildValidatorData({
-            name: 'editorRequired',
-            title: t('cmsManage.page.pb_content'),
-            message: '正文 必填',
-        }),
-    ],
+    et_key: [buildValidatorData({ name: 'required', title: t('mailManage.template.et_key') })],
+    et_title: [buildValidatorData({ name: 'required', title: t('mailManage.template.et_title') })],
+    et_subject: [buildValidatorData({ name: 'required', title: t('mailManage.template.et_subject') })],
+    et_content: [buildValidatorData({ name: 'required', title: t('mailManage.template.et_content') })],
 })
 </script>
 

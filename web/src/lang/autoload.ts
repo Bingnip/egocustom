@@ -14,4 +14,6 @@ export default {
     [adminBaseRoutePath + '/site/currencyConfig']: ['./backend/${lang}/siteManage/currencyConfig.ts'],
     [adminBaseRoutePath + '/cms/block']: ['./backend/${lang}/cmsManage/block.ts'],
     [adminBaseRoutePath + '/cms/page']: ['./backend/${lang}/cmsManage/page.ts'],
+    [adminBaseRoutePath + '/mail/template']: ['./backend/${lang}/mailManage/template.ts'],
+    [adminBaseRoutePath + '/mail/sendQueue']: ['./backend/${lang}/mailManage/sendQueue.ts'],
 }

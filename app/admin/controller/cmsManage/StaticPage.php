@@ -15,7 +15,7 @@ class StaticPage extends Backend
     protected object $model;
 
     protected string|array $quickSearchField = ['pb_key', 'pb_title', 'pb_status'];
-
+    # todo 缓存刷新要写下
     public function initialize(): void
     {
         parent::initialize();

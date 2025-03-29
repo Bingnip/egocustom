@@ -1,25 +1,25 @@
 <?php
 declare (strict_types=1);
 
-namespace app\admin\controller\cmsManage;
+namespace app\admin\controller\mailManage;
 
-use app\admin\model\cmsManage as CmsManage;
+use app\admin\model\mailManage as MailManage;
 use app\common\controller\Backend;
 use Throwable;
 
 /**
  * 静态区域
  */
-class StaticBlock extends Backend
+class EmailTemplate extends Backend
 {
     protected object $model;
 
-    protected string|array $quickSearchField = ['cb_key', 'cb_name'];
-    # todo 缓存刷新要写下
+    protected string|array $quickSearchField = ['et_key', 'et_title', 'et_desc', 'et_content'];
+
     public function initialize(): void
     {
         parent::initialize();
-        $this->model = new CmsManage\StaticBlock();
+        $this->model = new MailManage\EmailTemplate();
     }
 
     public function index(): void
@@ -41,7 +41,7 @@ class StaticBlock extends Backend
     {
         if (!$this->request->isPost()) $this->error(__('Post error'));
         $post = $this->request->post();
-        if (!$post) $this->error(__('Parameter %s can not be empty', ['cb_name', 'cb_key', 'cb_content']));
+        if (!$post) $this->error(__('Parameter %s can not be empty', ['et_key', 'et_title', 'et_desc', 'et_content']));
 
         if ($this->modelValidate) {
             try {
@@ -53,9 +53,8 @@ class StaticBlock extends Backend
             }
         }
 
-        $cbKey = $post['cb_key'];
-        if (!preg_match('/^[a-z0-9_]+$/', $cbKey)) $this->error('【标识符】仅限小写字母、数字和下划线');
-
+        $key = $post['et_key'];
+        if (!preg_match('/^[a-z0-9_]+$/', $key)) $this->error('【标识符】仅限小写字母、数字、下划线');
         $result = $this->model->add($post);
         if (!$result) $this->error(__('No rows were added'));
         $this->success(__('Added successfully'));
@@ -65,8 +64,7 @@ class StaticBlock extends Backend
     {
         if ($this->request->isPost()) {
             $post = $this->request->post();
-            if (!$post) $this->error(__('Parameter %s can not be empty', ['cb_name', 'cb_key', 'cb_content']));
-
+            if (!$post) $this->error(__('Parameter %s can not be empty', ['et_key', 'et_title', 'et_desc', 'et_content']));
 
             if ($this->modelValidate) {
                 try {
@@ -78,14 +76,14 @@ class StaticBlock extends Backend
                 }
             }
 
-            $isExist = $this->model->getRowByKey($post['cb_key'], intval($post['cb_id']));
+            $isExist = $this->model->getRowByKey($post['et_key'], intval($post['et_id']));
             if ($isExist) $this->error('标识符已存在，请更改');
 
-            $cbId = $post['cb_id'];
-            $this->model->updateRowById($cbId, $post);
+            $id = $post['et_id'];
+            $this->model->updateRowById($id, $post);
             $this->success('保存成功');
         } else {
-            $id   = $this->request->param('cb_id');
+            $id   = $this->request->param('et_id');
             $info = $this->model->getRowById($id);
             $this->success('', ['row' => $info]);
         }

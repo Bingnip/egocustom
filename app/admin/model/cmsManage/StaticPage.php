@@ -45,7 +45,7 @@ class StaticPage extends Model
             if (isset($where['pb_url_key'])) {
                 $query->where('pb_url_key', 'LIKE', '%' . $where['pb_url_key'] . '%');
             }
-            if (isset($where['cb_status'])) {
+            if (isset($where['pb_status'])) {
                 $query->where('pb_status', '=', $where['pb_status']);
             }
         });

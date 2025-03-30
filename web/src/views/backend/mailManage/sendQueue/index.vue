@@ -35,8 +35,20 @@ defineOptions({
 
 const { t } = useI18n()
 const tableRef = ref()
+let btnOther: OptButton = {
+    render: 'tipButton',
+    name: 'view',
+    text: '',
+    type: 'primary',
+    icon: 'fa fa-pencil',
+    class: 'table-row-edit',
+    disabledTip: false,
+    click: (row) => {
+        baTable.toggleForm('Edit', row.id)
+    },
+}
 const optButtons: OptButton[] = defaultOptButtons(['delete'])
-
+optButtons.push(btnOther)
 /**
  * baTable 内包含了表格的所有数据且数据具备响应性，然后通过 provide 注入给了后代组件
  */
@@ -69,9 +81,14 @@ const baTable = new baTableClass(
                 prop: 'eq_status',
                 align: 'center',
                 render: 'tag',
-                operator: 'LIKE',
-                custom: { '0': 'danger', '1': 'success' },
-                replaceValue: { '0': t('Disable'), '1': t('Enable') },
+                operator: '=',
+                custom: { '0': 'normal', '10': 'warning', '20': 'success', '40': 'danger' },
+                replaceValue: {
+                    '0': t('mailManage.sendQueue.status_0'),
+                    '10': t('mailManage.sendQueue.status_10'),
+                    '20': t('mailManage.sendQueue.status_20'),
+                    '40': t('mailManage.sendQueue.status_40'),
+                },
                 width: 100,
                 sortable: false,
             },
@@ -91,8 +108,8 @@ const baTable = new baTableClass(
                 sortable: false,
                 render: 'datetime',
             },
-            { label: t('mailManage.sendQueue.eq_rertry'), prop: 'eq_rertry', align: 'center', operator: 'RANGE', sortable: false },
-            { label: t('Operate'), align: 'center', width: 100, render: 'buttons', buttons: optButtons, operator: false },
+            { label: t('mailManage.sendQueue.eq_rertry'), prop: 'eq_rertry', align: 'center', operator: 'RANGE', width: 90, sortable: false },
+            { label: t('Operate'), align: 'center', width: 120, render: 'buttons', buttons: optButtons, operator: false },
         ],
         dblClickNotEditColumn: [undefined],
         defaultOrder: { prop: 'eq_id', order: 'desc' },

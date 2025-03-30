@@ -8,5 +8,9 @@ export default {
     eq_rertry: '重试次数',
     eq_created_at: '创建时间',
     eq_updated_at: '更新时间',
+    status_0: '待发送',
+    status_10: '发送中',
+    status_20: '发送成功',
+    status_40: '失败',
     'quick Search Fields': 'eq_id',
 }

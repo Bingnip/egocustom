@@ -15,7 +15,7 @@
         <Table ref="tableRef"></Table>
 
         <!-- 表单 -->
-        <PopupForm />
+        <PopupForm ref="popupFormRef" />
     </div>
 </template>
 
@@ -32,19 +32,20 @@ import baTableClass from '/@/utils/baTable'
 defineOptions({
     name: 'mailManage/sendQueue',
 })
-
+const popupFormRef = ref()
 const { t } = useI18n()
 const tableRef = ref()
 let btnOther: OptButton = {
     render: 'tipButton',
     name: 'view',
+    title: '查看',
     text: '',
     type: 'primary',
-    icon: 'fa fa-pencil',
+    icon: 'fa fa-eye',
     class: 'table-row-edit',
     disabledTip: false,
     click: (row) => {
-        baTable.toggleForm('Edit', row.id)
+        popupFormRef.value?.openDialog(row)
     },
 }
 const optButtons: OptButton[] = defaultOptButtons(['delete'])

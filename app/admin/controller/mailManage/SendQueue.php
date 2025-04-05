@@ -37,7 +37,15 @@ class SendQueue extends Backend
         ]);
     }
 
+    public function getRow(): void
+    {
+        $params = $this->request->param();
+        $id = $params['id'];
 
+        $info = $this->model->getRowById($id);
+
+        $this->success('', ['row' => $info]);
+    }
 
     public function del(array $ids = []): void
     {

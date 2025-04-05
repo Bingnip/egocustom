@@ -15,3 +15,8 @@ export function saveForm(form: Object) {
     const postData = { form: form }
     return createAxios({ url: url + 'saveForm', method: 'post', data: postData }, { showSuccessMessage: true })
 }
+
+export function getRow(rowId: Number) {
+    const postData = { id: rowId }
+    return createAxios({ url: url + 'getRow', method: 'post', data: postData }, { showSuccessMessage: false })
+}

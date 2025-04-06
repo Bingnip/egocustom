@@ -69,9 +69,8 @@
                     type="editor"
                     v-model="baTable.form.items!.et_content"
                     prop="et_content"
-                    @keyup.enter.stop=""
-                    @keyup.ctrl.enter="baTable.onSubmit(formRef)"
                     :placeholder="t('Please input field', { field: t('mailManage.template.et_content') })"
+                    :inputAttr="{ style: { width: '500px', height: '300px' } }"
                 />
                 <FormItem
                     :label="t('mailManage.template.et_memo')"

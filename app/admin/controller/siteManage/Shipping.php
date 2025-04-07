@@ -66,7 +66,7 @@ class Shipping extends Backend
     public function edit(): void
     {
         if ($this->request->isPost()) {
-            $post = $this->request->post();
+            $post = $this->request->param();
             if (!$post) $this->error(__('Parameter %s can not be empty', ['ship_id']));
 
             if ($this->modelValidate) {

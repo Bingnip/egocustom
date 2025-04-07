@@ -30,7 +30,7 @@ import Table from '/@/components/table/index.vue'
 import baTableClass from '/@/utils/baTable'
 
 defineOptions({
-    name: 'manage/shipping',
+    name: 'siteManage/shipping',
 })
 
 const { t } = useI18n()
@@ -72,7 +72,7 @@ const baTable = new baTableClass(
                 operatorPlaceholder: t('Fuzzy query'),
             },
             { label: t('siteManage.shipping.ship_desc'), prop: 'ship_desc', align: 'center', operator: false, width: 240 },
-            { label: t('siteManage.shipping.ship_html_desc'), prop: 'ship_html_desc', align: 'center', operator: false, width: 240 },
+            { label: t('siteManage.shipping.ship_html_desc'), prop: 'ship_html_desc', align: 'center', operator: false, width: 320 },
             { label: t('siteManage.shipping.ship_order'), prop: 'ship_order', align: 'center', operator: false, width: 105, sortable: true },
             {
                 label: t('siteManage.shipping.ship_status'),

@@ -15,4 +15,5 @@ export default {
     [adminBaseRoutePath + '/mail/template']: ['./backend/${lang}/mailManage/template.ts'],
     [adminBaseRoutePath + '/mail/sendQueue']: ['./backend/${lang}/mailManage/sendQueue.ts'],
     [adminBaseRoutePath + '/site/shipping']: ['./backend/${lang}/siteManage/shipping.ts'],
+    [adminBaseRoutePath + '/marketing/couponRule']: ['./backend/${lang}/marketingManage/couponRule.ts'],
 }

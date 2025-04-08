@@ -43,8 +43,8 @@ class Shipping extends Backend
     public function add(): void
     {
         if (!$this->request->isPost()) $this->error(__('Post error'));
-        $post = $this->request->post();
-        logger($post);
+        $post = $this->request->getInput();
+        $post = json_decode($post, true) ?? [];
         if ($this->modelValidate) {
             try {
                 $validate = str_replace("\\model\\", "\\validate\\", get_class($this->model));
@@ -66,7 +66,8 @@ class Shipping extends Backend
     public function edit(): void
     {
         if ($this->request->isPost()) {
-            $post = $this->request->param();
+            $post = $this->request->getInput();
+            $post = json_decode($post, true) ?? [];
             if (!$post) $this->error(__('Parameter %s can not be empty', ['ship_id']));
 
             if ($this->modelValidate) {

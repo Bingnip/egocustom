@@ -40,7 +40,8 @@ class EmailTemplate extends Backend
     public function add(): void
     {
         if (!$this->request->isPost()) $this->error(__('Post error'));
-        $post = $this->request->post();
+        $post = $this->request->getInput();
+        $post = json_decode($post, true) ?? [];
         if (!$post) $this->error(__('Parameter %s can not be empty', ['et_key', 'et_title', 'et_desc', 'et_content']));
 
         if ($this->modelValidate) {
@@ -63,7 +64,8 @@ class EmailTemplate extends Backend
     public function edit(): void
     {
         if ($this->request->isPost()) {
-            $post = $this->request->post();
+            $post = $this->request->getInput();
+            $post = json_decode($post, true) ?? [];
             if (!$post) $this->error(__('Parameter %s can not be empty', ['et_key', 'et_title', 'et_desc', 'et_content']));
 
             if ($this->modelValidate) {

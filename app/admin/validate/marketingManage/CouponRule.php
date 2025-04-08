@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\validate\marktingManage;
+namespace app\admin\validate\marketingManage;
 
 use think\Validate;
 

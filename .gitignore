@@ -11,6 +11,8 @@ dist-ssr
 /web/.env.development
 /web/.env.production
 Desktop.ini
+/public/storage
+.history
 
 # Log files
 *.log

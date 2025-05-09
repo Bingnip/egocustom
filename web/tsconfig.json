@@ -4,7 +4,7 @@
         "module": "ESNext",
         "lib": ["ESNext", "DOM"],
         "useDefineForClassFields": true,
-        "moduleResolution": "Bundler",
+        "moduleResolution": "node",
         "strict": true,
         "jsx": "preserve",
         "sourceMap": false,

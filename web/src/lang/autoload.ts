@@ -8,7 +8,12 @@ import { adminBaseRoutePath } from '/@/router/static/adminBase'
 export default {
     '/': ['./frontend/${lang}/index.ts'],
     [adminBaseRoutePath + '/moduleStore']: ['./backend/${lang}/module.ts'],
-    [adminBaseRoutePath + '/user/rule']: ['./backend/${lang}/auth/rule.ts'],
-    [adminBaseRoutePath + '/user/scoreLog']: ['./backend/${lang}/user/moneyLog.ts'],
     [adminBaseRoutePath + '/crud/crud']: ['./backend/${lang}/crud/log.ts', './backend/${lang}/crud/state.ts'],
+    [adminBaseRoutePath + '/site/currencyConfig']: ['./backend/${lang}/siteManage/currencyConfig.ts'],
+    [adminBaseRoutePath + '/cms/block']: ['./backend/${lang}/cmsManage/block.ts'],
+    [adminBaseRoutePath + '/cms/page']: ['./backend/${lang}/cmsManage/page.ts'],
+    [adminBaseRoutePath + '/mail/template']: ['./backend/${lang}/mailManage/template.ts'],
+    [adminBaseRoutePath + '/mail/sendQueue']: ['./backend/${lang}/mailManage/sendQueue.ts'],
+    [adminBaseRoutePath + '/site/shipping']: ['./backend/${lang}/siteManage/shipping.ts'],
+    [adminBaseRoutePath + '/marketing/couponRule']: ['./backend/${lang}/marketingManage/couponRule.ts'],
 }

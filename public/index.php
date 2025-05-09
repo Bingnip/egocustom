@@ -27,7 +27,7 @@ if (!$server) {
     }
     // 安装检测-e
 
-    // 检测是否已编译前端（如果存在 index.html，则访问）-s
+    // 检测是否已编译前端（如果存在 index.html，则访问）-snpm install sass@latest
     if (is_file($rootPath . 'index.html')) {
         header("location:" . DIRECTORY_SEPARATOR . 'index.html');
         exit();

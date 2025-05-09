@@ -5,6 +5,7 @@
 export default {
     Id: 'ID',
     State: '状态',
+    Status: '状态',
     Home: '首页',
     Complete: '完成',
     Edit: '编辑',
